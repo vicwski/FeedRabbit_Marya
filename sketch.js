@@ -22,18 +22,18 @@ var bunny
 var blink, eat, sad
 
 function preload() {
-  bg_img = loadImage('background.png')
-  food = loadImage('melon.png')
-  rabbit = loadImage('rabbit.png')
-  blink = loadAnimation('blink_1.png', 'blink_2.png', 'blink_3.png')
+  bg_img = loadImage('images/background.png')
+  food = loadImage('images/melon.png')
+  rabbit = loadImage('images/rabbit.png')
+  blink = loadAnimation('images/blink_1.png', 'images/blink_2.png', 'images/blink_3.png')
   eat = loadAnimation(
-    'eat_0.png',
-    'eat_1.png',
-    'eat_2.png',
-    'eat_3.png',
-    'eat_4.png'
+    'images/eat_0.png',
+    'images/eat_1.png',
+    'images/eat_2.png',
+    'images/eat_3.png',
+    'images/eat_4.png'
   )
-  sad = loadAnimation('sad_1.png', 'sad_2.png', 'sad_3.png')
+  sad = loadAnimation('images/sad_1.png', 'images/sad_2.png', 'images/sad_3.png')
 
   blink.playing = true
   eat.playing = true
@@ -49,7 +49,7 @@ function setup() {
   engine = Engine.create()
   world = engine.world
 
-  button = createImg('cut_btn.png')
+  button = createImg('images/cut_btn.png')
   button.position(220, 30)
   button.size(50, 50)
   button.mouseClicked(drop)
