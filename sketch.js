@@ -24,7 +24,7 @@ var blink, eat, sad
 function preload() {
   bg_img = loadImage('background.png')
   food = loadImage('melon.png')
-  rabbit = loadImage('Rabbit-01.png')
+  rabbit = loadImage('rabbit.png')
   blink = loadAnimation('blink_1.png', 'blink_2.png', 'blink_3.png')
   eat = loadAnimation(
     'eat_0.png',
