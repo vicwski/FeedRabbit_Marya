@@ -17,14 +17,22 @@ var bg_img
 var food
 var rabbit
 
-var button
+var button, muteBtn, airBtn
 var bunny
 var blink, eat, sad
+var bkSound, airSound, eatSound, sadSound, cutSound
 
 function preload() {
   bg_img = loadImage('images/background.png')
   food = loadImage('images/melon.png')
   rabbit = loadImage('images/rabbit.png')
+
+  cutSound = loadSound('sounds/cutSound.mp3')
+  airSound = loadSound('sounds/air.wav')
+  eatSound = loadSound('sounds/eating_sound.mp3')
+  sadSound = loadSound('sounds/sad.wav')
+  bkSound = loadSound('sounds/sound1.mp3')
+
   blink = loadAnimation(
     'images/blink_1.png',
     'images/blink_2.png',
@@ -57,10 +65,22 @@ function setup() {
   engine = Engine.create()
   world = engine.world
 
+  // bkSound.play()
+
   button = createImg('images/cut_btn.png')
   button.position(220, 30)
   button.size(50, 50)
   button.mouseClicked(drop)
+
+  muteBtn = createImg('images/mute.png')
+  muteBtn.position(435, 10)
+  muteBtn.size(50, 50)
+  muteBtn.mouseClicked(mute)
+
+  airSound = createImg('images/cut_button.png')
+  airSound.position(50, 250)
+  airSound.size(50, 50)
+  airSound.mouseClicked(blow)
 
   rope = new Rope(7, { x: 245, y: 30 })
   ground = new Ground(200, 690, 600, 20)
@@ -73,7 +93,6 @@ function setup() {
   bunny.scale = 0.2
 
   bunny.addAnimation('blinking', blink)
-
   bunny.addAnimation('eating', eat)
   bunny.addAnimation('crying', sad)
   bunny.changeAnimation('blinking')
@@ -133,4 +152,16 @@ function collide(body, sprite) {
       return false
     }
   }
+}
+
+function mute() {
+  if (bkSound.isPlaying()) {
+    bkSound.stop()
+  } else {
+    bkSound.play()
+  }
+}
+
+function blow() {
+  Matter.Body.applyForce(fruit, { x: 0, y: 0 }, { x: 0.01, y: 0 })
 }
