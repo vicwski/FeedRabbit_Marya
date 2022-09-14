@@ -21,6 +21,7 @@ var button, muteBtn, airBtn
 var bunny
 var blink, eat, sad
 var bkSound, airSound, eatSound, sadSound, cutSound
+var canW, canH
 
 function preload() {
   bg_img = loadImage('images/background.png')
@@ -59,7 +60,17 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(500, 700)
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+  
+  if (isMobile) {
+    canW = displayWidth
+    canH = displayHeight
+  } else {
+    canW = windowWidth
+    canH = windowHeight
+  }
+  
+  createCanvas(canW, canH)
   frameRate(80)
 
   engine = Engine.create()
@@ -68,12 +79,12 @@ function setup() {
   // bkSound.play()
 
   button = createImg('images/cut_btn.png')
-  button.position(220, 30)
+  button.position(canW / 2 - 30, 30)
   button.size(50, 50)
   button.mouseClicked(drop)
 
   muteBtn = createImg('images/mute.png')
-  muteBtn.position(435, 10)
+  muteBtn.position(canW - 70, 10)
   muteBtn.size(50, 50)
   muteBtn.mouseClicked(mute)
 
@@ -82,14 +93,14 @@ function setup() {
   airSound.size(50, 50)
   airSound.mouseClicked(blow)
 
-  rope = new Rope(7, { x: 245, y: 30 })
-  ground = new Ground(200, 690, 600, 20)
+  rope = new Rope(7, { x: canW / 2 - 5, y: 30 })
+  ground = new Ground(canW / 2, canH - 10, canW, 20)
 
   blink.frameDelay = 20
   eat.frameDelay = 20
   sad.frameDelay = 20
 
-  bunny = createSprite(230, 620, 100, 100)
+  bunny = createSprite(canW / 2 - 30, canH - 90, 100, 100)
   bunny.scale = 0.2
 
   bunny.addAnimation('blinking', blink)
