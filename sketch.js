@@ -76,8 +76,9 @@ function setup() {
   engine = Engine.create()
   world = engine.world
 
-  // bkSound.play()
-
+  bkSound.play()
+  bkSound.setVolume(0.5)
+  
   button = createImg('images/cut_btn.png')
   button.position(canW / 2 - 30, 30)
   button.size(50, 50)
@@ -120,7 +121,7 @@ function setup() {
 
 function draw() {
   background(51)
-  image(bg_img, width / 2, height / 2, 490, 690)
+  image(bg_img, width / 2, height / 2, width - 10, height - 10)
 
   if (fruit != null) {
     image(food, fruit.position.x, fruit.position.y, 70, 70)
